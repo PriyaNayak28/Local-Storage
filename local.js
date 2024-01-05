@@ -8,9 +8,16 @@ function saveToLocalStorage(event) {
     const EMAIL = event.target.emailId.value;
     const PHONE = event.target.phoneNo.value;
 
-    localStorage.setItem('name', NAME);
-    localStorage.setItem('email', EMAIL);
-    localStorage.setItem('phone', PHONE);
+    let userDetails = {
+        NAME,
+        EMAIL,
+        PHONE,
+    }
+
+    let userDetail = JSON.stringify(userDetails);
+    localStorage.setItem('userDetails', userDetail);
+    // let myObj = JSON.parse(localStorage.getItem('userDetails'));
+
 
 };
 
