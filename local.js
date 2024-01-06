@@ -44,13 +44,27 @@ function saveToLocalStorage(event) {
     const ul = document.getElementById('listitem');
 
     //newLi.innerHTML = `Name: ${myObj.NAME}, Email: ${myObj.EMAIL}, Phone: ${myObj.PHONE}`;
-    newLi.innerHTML = `Name: ${userDetails.NAME}, Email: ${userDetails.EMAIL}, Phone: ${userDetails.PHONE}` + '<button class="delete-btn">delete</button>';
+    newLi.innerHTML = `Name: ${userDetails.NAME}, Email: ${userDetails.EMAIL}, Phone: ${userDetails.PHONE}` + '<button class="delete-btn">delete</button>' + '<button class="edit-btn">edit</button>';
     ul.appendChild(newLi);
 
     ul.addEventListener('click', function (event) {
         if (event.target.classList.contains('delete-btn')) {
             deleteItem = event.target.parentElement;
             ul.removeChild(deleteItem);
+            localStorage.removeItem(userDetails.EMAIL);
+        }
+
+    })
+
+    ul.addEventListener('click', function (event) {
+        if (event.target.classList.contains('edit-btn')) {
+            editItem = event.target.parentElement;
+            ul.removeChild(editItem);
+            localStorage.removeItem(userDetails.EMAIL);
+
+            document.getElementById('username').value = userDetails.NAME;
+            document.getElementById('emailId').value = userDetails.EMAIL;
+            document.getElementById('phoneNo').value = userDetails.PHONE;
         }
     })
 
